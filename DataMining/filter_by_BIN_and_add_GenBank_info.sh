@@ -1,9 +1,5 @@
 #!/bin/sh
 
-# Eduardo Conde-Sousa
-# econdesousa@gmail.com
-# v0.2
-
 filename=$1
 base=$(basename -- "$filename")
 extension="${base##*.}"
