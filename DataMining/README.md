@@ -1,8 +1,4 @@
-This scripts are prepared to be run on a Linux terminal.
-They should work on MacOS terminal as wel but were never tested at this OS
-If you have a Windows PC you can install Windows Subsystem for Linux (the scripts were tested and work on the UBUNTU terminal of Windows Subsystem for Linux)
-
-USAGE
+# USAGE
 1. Keep the three scripts under the same folder
 2. From the Linux commandline run:
 ```
@@ -13,3 +9,10 @@ If you want to donwload more than one taxonomic group at the sam time use "|" be
 ```
 ./DownloadFromBold.sh "Bovinae|Caprinae" .
 ```
+
+# Notes on Operating System
+* These scripts are prepared to run on a Linux terminal.
+* They should work on MacOS terminal as well but they were never tested.
+* If you have a Windows PC you can install Windows Subsystem for Linux (the scripts were tested and work on the UBUNTU terminal of Windows Subsystem for Linux)
+
+
