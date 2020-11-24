@@ -260,14 +260,13 @@ void MainWindow::exportDataToTSVHelper(QString filename, bool full){
     QString params_filename = filename + "_params.txt";
     analysis(filename);
     if(full){
-        valuesStat = "select * from \"%1\"";
+        valuesStat = "select %1 from \"%2\"";
         filename = filename + ".tsv";
     }
     else{
-        valuesStat = "select * from \"%1\" where modification not like \"%DELETED%\" and species_name != \"\" and institution_storing != \"\" and bin_uri != \"\"";
+        valuesStat = "select %1 from \"%2\" where modification not like \"%DELETED%\" and species_name != \"\" and institution_storing != \"\" and bin_uri != \"\"";
         filename = filename + "_pruned"+".tsv";
     }
-    valuesStat = valuesStat.arg(project);
 
     QFile file(filename);
     if (!file.open(QIODevice::WriteOnly)) {
@@ -322,8 +321,16 @@ void MainWindow::exportDataToTSVHelper(QString filename, bool full){
     dbc.execQuery(update_query);
     QString header = dbc.execQuery(header_query)[0][0];
     QStringList header_values = header.split(',');
+    if(header_values.contains("ispecID")){
+        header_values.removeOne("ispecID");
+    }
+    if(header_values.contains("ex_id")){
+        header_values.removeOne("ex_id");
+    }
+    valuesStat = valuesStat.arg(header_values.join(','));
+    valuesStat = valuesStat.arg(project);
     QVector<QStringList> values = dbc.execQuery(valuesStat);
-    stream << header.replace(",","\t")+"\n";
+    stream << header_values.join("\t")+"\n";
     int index = header_values.indexOf("grade");
     QString grade_ast = "";
     if(params.min_sources == 1)
