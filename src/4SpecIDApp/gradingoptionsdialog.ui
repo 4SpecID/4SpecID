@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>GradingOptionsDialog</class>
+ <widget class="QDialog" name="GradingOptionsDialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>472</width>
+    <height>174</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Grading Options</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">QDialog#GradingOptionsDialog{
+background:qlineargradient(spread:pad, x1:0, y1:0.511364, x2:1, y2:0.511364, stop:0 rgba(50, 117, 116,255) , stop:1 rgba(69, 135, 133,255) )
+}</string>
+  </property>
+  <layout class="QGridLayout" name="gridLayout">
+   <item row="1" column="1" colspan="2">
+    <widget class="QLineEdit" name="min_lab_text"/>
+   </item>
+   <item row="0" column="1" colspan="2">
+    <widget class="QLineEdit" name="max_dist_text">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="0">
+    <widget class="QLabel" name="min_lab_label">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color:white</string>
+     </property>
+     <property name="text">
+      <string>#Registered Records (default: 3)</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="0">
+    <widget class="QLabel" name="min_sequences_label">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color:white
+</string>
+     </property>
+     <property name="text">
+      <string>Required #Sources (default: 2)</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="3">
+    <widget class="QLabel" name="label">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Maximum" vsizetype="Preferred">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color:white</string>
+     </property>
+     <property name="text">
+      <string>%</string>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="0">
+    <widget class="QLabel" name="max_dist_label">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: white</string>
+     </property>
+     <property name="text">
+      <string>Max distance between the
+2 nearest neighbours</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignJustify|Qt::AlignVCenter</set>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="1" colspan="2">
+    <widget class="QLineEdit" name="min_sequences_text"/>
+   </item>
+   <item row="3" column="1" colspan="2">
+    <layout class="QHBoxLayout" name="horizontalLayout">
+     <property name="spacing">
+      <number>10</number>
+     </property>
+     <item>
+      <widget class="QPushButton" name="save_options_button">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Minimum" vsizetype="Maximum">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>50</width>
+         <height>25</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton#save_options_button{
+color:white;
+background:rgb(25, 150, 141);
+border-color:rgb(25, 150, 141);
+border-radius: 5px;
+height: 25px
+}
+
+QPushButton#save_options_button:hover
+{
+color:(220, 223, 223);
+background:rgb(21, 156, 143);
+border-color:rgb(21, 156, 143);
+border-radius: 5px;
+height: 25px
+}
+
+QPushButton#save_options_button:pressed
+{
+color:rgb(211, 213, 213);
+background:rgb(16, 117, 107);
+border-color:rgb(16, 117, 107);
+border-radius: 5px;
+height: 25px
+}</string>
+       </property>
+       <property name="text">
+        <string>Save</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="ok_button">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Minimum" vsizetype="Maximum">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>50</width>
+         <height>25</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton#ok_button{
+color:white;
+background:rgb(25, 150, 141);
+border-color:rgb(25, 150, 141);
+border-radius: 5px;
+height: 25px
+}
+
+QPushButton#ok_button:hover
+{
+color:(220, 223, 223);
+background:rgb(21, 156, 143);
+border-color:rgb(21, 156, 143);
+border-radius: 5px;
+height: 25px
+}
+
+QPushButton#sok_button:pressed
+{
+color:rgb(211, 213, 213);
+background:rgb(16, 117, 107);
+border-color:rgb(16, 117, 107);
+border-radius: 5px;
+height: 25px
+}</string>
+       </property>
+       <property name="text">
+        <string>Ok</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+  </layout>
+ </widget>
+ <tabstops>
+  <tabstop>max_dist_text</tabstop>
+  <tabstop>min_lab_text</tabstop>
+  <tabstop>min_sequences_text</tabstop>
+  <tabstop>save_options_button</tabstop>
+  <tabstop>ok_button</tabstop>
+ </tabstops>
+ <resources/>
+ <connections/>
+</ui>

@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>FilterDialog</class>
+ <widget class="QDialog" name="FilterDialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>380</width>
+    <height>400</height>
+   </rect>
+  </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>0</width>
+    <height>0</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>16777215</width>
+    <height>16777215</height>
+   </size>
+  </property>
+  <property name="windowTitle">
+   <string>FilterDialog</string>
+  </property>
+  <property name="layoutDirection">
+   <enum>Qt::LeftToRight</enum>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">QDialog#FilterDialog{
+background:qlineargradient(spread:pad, x1:0, y1:0.511364, x2:1, y2:0.511364, stop:0 rgba(50, 117, 116,255) , stop:1 rgba(69, 135, 133,255) )
+}</string>
+  </property>
+  <property name="sizeGripEnabled">
+   <bool>false</bool>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
+    <widget class="FilterScrollArea" name="fsarea" native="true">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="MinimumExpanding" vsizetype="MinimumExpanding">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <spacer name="verticalSpacer">
+     <property name="orientation">
+      <enum>Qt::Vertical</enum>
+     </property>
+     <property name="sizeType">
+      <enum>QSizePolicy::Maximum</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>20</width>
+       <height>40</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout">
+     <item>
+      <spacer name="horizontalSpacer">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item>
+      <widget class="QCheckBox" name="keepCheckBox">
+       <property name="styleSheet">
+        <string notr="true">color:white
+</string>
+       </property>
+       <property name="text">
+        <string>Keep</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="addBtn">
+       <property name="minimumSize">
+        <size>
+         <width>50</width>
+         <height>25</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton#addBtn{
+color:white;
+background:rgb(25, 150, 141);
+border-color:rgb(25, 150, 141);
+border-radius: 5px;
+height: 25px
+}
+
+QPushButton#addBtn:hover
+{
+color:(220, 223, 223);
+background:rgb(21, 156, 143);
+border-color:rgb(21, 156, 143);
+border-radius: 5px;
+height: 25px
+}
+
+QPushButton#addBtn:pressed
+{
+color:rgb(211, 213, 213);
+background:rgb(16, 117, 107);
+border-color:rgb(16, 117, 107);
+border-radius: 5px;
+height: 25px
+}</string>
+       </property>
+       <property name="text">
+        <string>Add</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QDialogButtonBox" name="buttonBox">
+       <property name="styleSheet">
+        <string notr="true">QDialogButtonBox#buttonBox{
+color:white;
+background:rgb(25, 150, 141);
+border-color:rgb(25, 150, 141);
+border-radius: 5px;
+height: 25px
+}
+
+QPushButton#addBtn:hover
+{
+color:(220, 223, 223);
+background:rgb(21, 156, 143);
+border-color:rgb(21, 156, 143);
+border-radius: 5px;
+height: 25px
+}
+
+QPushButton#addBtn:pressed
+{
+color:rgb(211, 213, 213);
+background:rgb(16, 117, 107);
+border-color:rgb(16, 117, 107);
+border-radius: 5px;
+height: 25px
+}</string>
+       </property>
+       <property name="standardButtons">
+        <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+  </layout>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>FilterScrollArea</class>
+   <extends>QWidget</extends>
+   <header>4SpecIDApp/filterscrollarea.h</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
+ <resources/>
+ <connections/>
+</ui>
