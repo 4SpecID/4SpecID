@@ -53,7 +53,7 @@ HEADERS += \
         4SpecIDCore/include/datatypes.h \
         4SpecIDCore/include/fileio.h \
         4SpecIDCore/include/network.h \
-        4SpecIDCore/include/4Specid.h \
+        4SpecIDCore/include/ispecid.h \
         4SpecIDCore/include/utils.h \
         4SpecIDCore/include/csv.hpp \
         4SpecIDApp/mainwindow.h

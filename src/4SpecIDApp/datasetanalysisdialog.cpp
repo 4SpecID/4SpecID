@@ -1,5 +1,5 @@
 #include "datasetanalysisdialog.h"
-#include "ui_datasetAnalysisDialog.h"
+#include "ui_datasetanalysisdialog.h"
 #include <qtconcurrentrun.h>
 #include <QStandardItemModel>
 #include <QStandardItem>

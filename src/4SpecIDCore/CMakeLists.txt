@@ -47,22 +47,22 @@ else()
 endif()
 
 include_directories(
-    ${PROJECT_SOURCE_DIR}/iSpecIDCore/include
-    ${PROJECT_SOURCE_DIR}/iSpecIDCore/src
+    ${PROJECT_SOURCE_DIR}/include
+    ${PROJECT_SOURCE_DIR}/src
     ${Boost_INCLUDE_DIRS}
     ${CURL_INCLUDE_DIRS}
 )
 file(GLOB core
-    "${PROJECT_SOURCE_DIR}/iSpecIDCore/src/*.cpp"
-    "${PROJECT_SOURCE_DIR}/iSpecIDCore/include/*.h"
+    "${PROJECT_SOURCE_DIR}/src/*.cpp"
+    "${PROJECT_SOURCE_DIR}/include/*.h"
     )
 
 if(BIN)
     if(COMMAND cmake_policy)
         cmake_policy(SET CMP0003 NEW)
     endif(COMMAND cmake_policy)
-    add_executable( isid "${PROJECT_SOURCE_DIR}/main.cpp" ${core}  )
-    target_link_libraries(isid -lpthread)
-    target_link_libraries(isid ${CURL_LIBRARIES})
-    target_link_libraries(isid ${Boost_LIBRARIES})
+    add_executable( 4specid "${PROJECT_SOURCE_DIR}/main.cpp" ${core}  )
+    target_link_libraries(4specid -lpthread)
+    target_link_libraries(4specid ${CURL_LIBRARIES})
+    target_link_libraries(4specid ${Boost_LIBRARIES})
 endif()
