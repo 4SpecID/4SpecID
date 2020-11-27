@@ -1,0 +1,40 @@
+institution_storing	bin_uri	species_name	dummyNumField1	dummyNumField2	dummyMixedField3
+A	Cluster01	Species01	0.75504	0.21836	Akjds
+A	Cluster01	Species01	0.68457	0.62485	
+A	Cluster01	Species01	0.41087	0.73403	asdafsd
+A	Cluster01	Species01	0.31381	0.92074	sd
+A	Cluster01	Species01	0.18779	0.17147	f
+A	Cluster01	Species01	0.13744	0.69948	dfsf
+A	Cluster01	Species01	0.81732	0.27245	
+B	Cluster01	Species01	0.02266	0.69636	
+B	Cluster01	Species01	0.24948	0.95336	dsf
+B	Cluster01	Species01	0.28762	0.03366	
+B	Cluster01	Species01	0.67550	0.46358	d
+B	Cluster01	Species01	0.73415	0.99639	f
+E	Cluster01	Species02	0.32174	0.77528	
+B	Cluster02	Species02	0.80757	0.60156	sd
+B	Cluster02	Species02	0.80385	0.30757	
+B	Cluster02	Species02	0.12974	0.56362	f
+B	Cluster02	Species02	0.79600	0.71236	
+B	Cluster02	Species02	0.12379	0.48006	fd
+B	Cluster02	Species02	0.19760	0.93435	
+C	Cluster03	Species02	0.58095	0.28629	
+C	Cluster03	Species02	0.64475	0.61929	
+C	Cluster03	Species02	0.10365	0.63896	dfsf
+A	Cluster04	Species03	0.12399	0.74531	
+A	Cluster04	Species03	0.63272	0.60357	
+A	Cluster04	Species03	0.23384	0.00377	fd
+D	Cluster04	Species03	0.53896	0.67815	
+D	Cluster04	Species04	0.02362	0.85256	
+D	Cluster04	Species04	0.05069	0.83155	sfd
+D	Cluster04	Species04	0.28152	0.95728	
+D	Cluster04	Species04	0.99310	0.73568	sfd
+D	Cluster04	Species04	0.06259	0.22728	dsf
+F	Cluster05	Species5	0.06653	0.24740	
+F	Cluster05	Species5	0.89067	0.04924	
+F	Cluster05	Species5	0.19462	0.78848	0.817174385
+F	Cluster05	Species5	0.46085	0.46840	
+F	Cluster05	Species5	0.47714	0.36636	
+G	Cluster05	Species5	0.98511	0.18858	poap
+G	Cluster05	Species5	0.52112	0.42431	
+G	Cluster05	Species5	0.64179	0.76278	
