@@ -40,7 +40,7 @@
      <number>0</number>
     </property>
     <item row="1" column="3" rowspan="3">
-     <widget class="QFrame" name="viewer_frame">
+     <widget class="QFrame" name="viewerFrame">
       <property name="sizePolicy">
        <sizepolicy hsizetype="MinimumExpanding" vsizetype="Ignored">
         <horstretch>0</horstretch>
@@ -179,7 +179,7 @@ background:qlineargradient(spread:pad, x1:0, y1:0.511364, x2:1, y2:0.511364, sto
         </widget>
        </item>
        <item row="2" column="0">
-        <widget class="QFrame" name="graph_frame">
+        <widget class="QFrame" name="graphFrame">
          <property name="styleSheet">
           <string notr="true"/>
          </property>
@@ -197,7 +197,7 @@ background:qlineargradient(spread:pad, x1:0, y1:0.511364, x2:1, y2:0.511364, sto
            <number>0</number>
           </property>
           <item alignment="Qt::AlignHCenter|Qt::AlignVCenter">
-           <widget class="QLabel" name="graph_viewer_label">
+           <widget class="QLabel" name="graphViewerLabel">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
               <horstretch>0</horstretch>
@@ -217,7 +217,7 @@ background:qlineargradient(spread:pad, x1:0, y1:0.511364, x2:1, y2:0.511364, sto
            </widget>
           </item>
           <item>
-           <spacer name="verticalSpacer_2">
+           <spacer name="graphVerticalSpacer">
             <property name="orientation">
              <enum>Qt::Vertical</enum>
             </property>
@@ -230,7 +230,7 @@ background:qlineargradient(spread:pad, x1:0, y1:0.511364, x2:1, y2:0.511364, sto
            </spacer>
           </item>
           <item>
-           <widget class="QComboBox" name="graph_combo_box">
+           <widget class="QComboBox" name="graphComboBox">
             <property name="sizePolicy">
              <sizepolicy hsizetype="MinimumExpanding" vsizetype="Minimum">
               <horstretch>0</horstretch>
@@ -246,7 +246,7 @@ background:qlineargradient(spread:pad, x1:0, y1:0.511364, x2:1, y2:0.511364, sto
            </widget>
           </item>
           <item>
-           <widget class="QGraphicsView" name="graph_viewer">
+           <widget class="QGraphicsView" name="graphViewer">
             <property name="enabled">
              <bool>true</bool>
             </property>
@@ -274,9 +274,9 @@ background:qlineargradient(spread:pad, x1:0, y1:0.511364, x2:1, y2:0.511364, sto
            </widget>
           </item>
           <item>
-           <layout class="QHBoxLayout" name="horizontalLayout">
+           <layout class="QHBoxLayout" name="graphHorizontalLayout">
             <item>
-             <spacer name="horizontalSpacer">
+             <spacer name="graphHorizontalSpacer">
               <property name="orientation">
                <enum>Qt::Horizontal</enum>
               </property>
@@ -289,7 +289,7 @@ background:qlineargradient(spread:pad, x1:0, y1:0.511364, x2:1, y2:0.511364, sto
              </spacer>
             </item>
             <item>
-             <widget class="QPushButton" name="zoom_in_button">
+             <widget class="QPushButton" name="zoomInButton">
               <property name="sizePolicy">
                <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
                 <horstretch>0</horstretch>
@@ -306,7 +306,7 @@ background:qlineargradient(spread:pad, x1:0, y1:0.511364, x2:1, y2:0.511364, sto
              </widget>
             </item>
             <item>
-             <widget class="QPushButton" name="zoom_out_button">
+             <widget class="QPushButton" name="zoomOutButton">
               <property name="sizePolicy">
                <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
                 <horstretch>0</horstretch>
@@ -331,7 +331,7 @@ background:qlineargradient(spread:pad, x1:0, y1:0.511364, x2:1, y2:0.511364, sto
      </widget>
     </item>
     <item row="1" column="0" rowspan="3">
-     <widget class="QFrame" name="sidebar_frame">
+     <widget class="QFrame" name="sidebarFrame">
       <property name="sizePolicy">
        <sizepolicy hsizetype="Minimum" vsizetype="MinimumExpanding">
         <horstretch>0</horstretch>
@@ -360,7 +360,7 @@ background:qlineargradient(spread:pad, x1:0, y1:0.511364, x2:1, y2:0.511364, sto
         <number>17</number>
        </property>
        <item>
-        <widget class="QFrame" name="results_frame">
+        <widget class="QFrame" name="resultsFrame">
          <property name="sizePolicy">
           <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
            <horstretch>0</horstretch>
@@ -381,7 +381,7 @@ background:qlineargradient(spread:pad, x1:0, y1:0.511364, x2:1, y2:0.511364, sto
          </property>
          <layout class="QVBoxLayout" name="verticalLayout_4">
           <item>
-           <widget class="QFrame" name="initial_results_frame">
+           <widget class="QFrame" name="initialResultsFrame">
             <property name="enabled">
              <bool>true</bool>
             </property>
@@ -419,7 +419,7 @@ background:rgb(25, 150, 141);
               <number>0</number>
              </property>
              <item alignment="Qt::AlignHCenter">
-              <widget class="QLabel" name="initial_results_label">
+              <widget class="QLabel" name="initialResultsLabel">
                <property name="sizePolicy">
                 <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
                  <horstretch>0</horstretch>
@@ -438,7 +438,7 @@ background:rgb(25, 150, 141);
               </widget>
              </item>
              <item>
-              <widget class="QTableView" name="initial_results_table">
+              <widget class="QTableView" name="initialResultsTable">
                <property name="sizePolicy">
                 <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
                  <horstretch>0</horstretch>
@@ -472,7 +472,7 @@ background:rgb(25, 150, 141);
            </widget>
           </item>
           <item>
-           <widget class="QFrame" name="current_results_frame">
+           <widget class="QFrame" name="currentResultsFrame">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
               <horstretch>0</horstretch>
@@ -507,7 +507,7 @@ background: rgb(25, 150, 141);
               <number>0</number>
              </property>
              <item alignment="Qt::AlignHCenter">
-              <widget class="QLabel" name="current_results_label">
+              <widget class="QLabel" name="currentResultsLabel">
                <property name="sizePolicy">
                 <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
                  <horstretch>0</horstretch>
@@ -526,7 +526,7 @@ background: rgb(25, 150, 141);
               </widget>
              </item>
              <item>
-              <widget class="QTableView" name="current_results_table">
+              <widget class="QTableView" name="currentResultsTable">
                <property name="sizePolicy">
                 <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
                  <horstretch>0</horstretch>
@@ -554,7 +554,7 @@ background: rgb(25, 150, 141);
         </widget>
        </item>
        <item>
-        <spacer name="verticalSpacer">
+        <spacer name="sidebarVerticalSpacer">
          <property name="orientation">
           <enum>Qt::Vertical</enum>
          </property>
@@ -567,7 +567,7 @@ background: rgb(25, 150, 141);
         </spacer>
        </item>
        <item>
-        <widget class="QPushButton" name="annotate_button">
+        <widget class="QPushButton" name="annotateButton">
          <property name="enabled">
           <bool>true</bool>
          </property>
@@ -622,7 +622,7 @@ height: 25px
         </widget>
        </item>
        <item>
-        <widget class="QPushButton" name="save_graph_button">
+        <widget class="QPushButton" name="saveGraphButton">
          <property name="styleSheet">
           <string notr="true">QPushButton#save_graph_button{
 color:white;
@@ -655,7 +655,7 @@ height: 25px
         </widget>
        </item>
        <item>
-        <widget class="QPushButton" name="undo_button">
+        <widget class="QPushButton" name="undoButton">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
            <horstretch>0</horstretch>
@@ -723,30 +723,30 @@ height: 25px
     <property name="title">
      <string>Project</string>
     </property>
-    <addaction name="new_project_action"/>
-    <addaction name="load_project_action"/>
-    <addaction name="delete_project_action"/>
-    <addaction name="save_project_action"/>
-    <addaction name="save_as_project_action"/>
-    <addaction name="export_to_TSV_action"/>
-    <addaction name="export_full_project_to_TSV_action"/>
-    <addaction name="export_results_action"/>
-    <addaction name="export_distance_matrix_action"/>
+    <addaction name="newProjectAction"/>
+    <addaction name="loadProjectAction"/>
+    <addaction name="deleteProjectAction"/>
+    <addaction name="saveProjectAction"/>
+    <addaction name="saveAsProjectAction"/>
+    <addaction name="exportToTSVAction"/>
+    <addaction name="exportFullProjectToTSVAction"/>
+    <addaction name="exportResultsAction"/>
+    <addaction name="exportDistanceMatrixAction"/>
    </widget>
-   <widget class="QMenu" name="menu_data">
+   <widget class="QMenu" name="dataMenu">
     <property name="title">
      <string>Data</string>
     </property>
-    <addaction name="filter_action"/>
-    <addaction name="gradind_options_action"/>
-    <addaction name="load_distance_matrix_action"/>
-    <addaction name="dataset_analysis_action"/>
+    <addaction name="filterAction"/>
+    <addaction name="gradindOptionsAction"/>
+    <addaction name="loadDistanceMatrixAction"/>
+    <addaction name="datasetAnalysisAction"/>
    </widget>
    <addaction name="menu_file"/>
-   <addaction name="menu_data"/>
+   <addaction name="dataMenu"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
-  <action name="new_project_action">
+  <action name="newProjectAction">
    <property name="text">
     <string>New project...</string>
    </property>
@@ -754,7 +754,7 @@ height: 25px
     <string>Ctrl+N</string>
    </property>
   </action>
-  <action name="load_project_action">
+  <action name="loadProjectAction">
    <property name="text">
     <string>Load project...</string>
    </property>
@@ -762,7 +762,7 @@ height: 25px
     <string>Ctrl+O</string>
    </property>
   </action>
-  <action name="filter_action">
+  <action name="filterAction">
    <property name="enabled">
     <bool>true</bool>
    </property>
@@ -770,12 +770,12 @@ height: 25px
     <string>Filter</string>
    </property>
   </action>
-  <action name="gradind_options_action">
+  <action name="gradindOptionsAction">
    <property name="text">
     <string>Grading</string>
    </property>
   </action>
-  <action name="save_project_action">
+  <action name="saveProjectAction">
    <property name="text">
     <string>Save project...</string>
    </property>
@@ -783,22 +783,17 @@ height: 25px
     <string>Ctrl+S</string>
    </property>
   </action>
-  <action name="export_to_TSV_action">
+  <action name="exportToTSVAction">
    <property name="text">
     <string>Export project to TSV</string>
    </property>
   </action>
-  <action name="load_distance_matrix_action">
+  <action name="loadDistanceMatrixAction">
    <property name="text">
     <string>Distance matrix</string>
    </property>
   </action>
-  <action name="close_project_action">
-   <property name="text">
-    <string>Close project</string>
-   </property>
-  </action>
-  <action name="save_as_project_action">
+  <action name="saveAsProjectAction">
    <property name="text">
     <string>Save as project...</string>
    </property>
@@ -806,32 +801,27 @@ height: 25px
     <string>Ctrl+Shift+S</string>
    </property>
   </action>
-  <action name="export_full_project_to_TSV_action">
+  <action name="exportFullProjectToTSVAction">
    <property name="text">
     <string>Export full project to TSV</string>
    </property>
   </action>
-  <action name="delete_project_action">
+  <action name="deleteProjectAction">
    <property name="text">
     <string>Delete project</string>
    </property>
   </action>
-  <action name="export_results_action">
+  <action name="exportResultsAction">
    <property name="text">
     <string>Export results</string>
    </property>
   </action>
-  <action name="export_distance_matrix_action">
+  <action name="exportDistanceMatrixAction">
    <property name="text">
     <string>Export distance matrix</string>
    </property>
   </action>
-  <action name="auto_correction_action">
-   <property name="text">
-    <string>Auto correction</string>
-   </property>
-  </action>
-  <action name="dataset_analysis_action">
+  <action name="datasetAnalysisAction">
    <property name="text">
     <string>Dataset analysis</string>
    </property>
