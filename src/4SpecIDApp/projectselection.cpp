@@ -1,92 +1,108 @@
-#include "projectselectiondialog.h"
-#include "ui_projectselectiondialog.h"
-#include "dbconnection.h"
+#include "projectselection.h"
+#include "ui_projectselection.h"
+#include "databaseconnector.h"
 #include <QStringListModel>
 #include <QPushButton>
 #include <qdebug.h>
 
-ProjectSelectionDialog::ProjectSelectionDialog(QString app_dir, QString current_project, QStringList projects, QWidget *parent) :
+
+ProjectSelectionDialog::ProjectSelectionDialog(MainWindow *parent, Action action) :
     QDialog(parent),
     ui(new Ui::ProjectSelectionDialog)
 {
     ui->setupUi(this);
-    this->app_dir = app_dir;
-    this->current_project = current_project;
-    QStringListModel *model = new QStringListModel();
-    model->setStringList(projects);
-    ui->projectList->setModel(model);
-    connect(ui->cancelButton, SIGNAL(clicked()), this, SLOT(onCloseProjectSelection()));
+    if(action == Action::LOAD){
+        setupLoad();
+    }
+    if(action == Action::DELETE){
+        setupRemove();
+    }
+
+    loadProjects();
+    connect(ui->cancelButton, &QPushButton::clicked, [this](){
+        setResult(QDialog::Rejected);
+        close();
+    });
 }
 
-LoadProjectSelectionDialog::LoadProjectSelectionDialog(QString app_dir, QString current_project, QStringList projects, QWidget *parent) :
-    ProjectSelectionDialog(app_dir, current_project, projects, parent)
+void ProjectSelectionDialog::loadProjects(){
+    DatabaseConnector dbc;
+    QStringList projects = dbc.getProjects();
+    QStringListModel *model = new QStringListModel(projects);
+    ui->projectList->setModel(model);
+}
+
+void ProjectSelectionDialog::setupLoad()
 {
     ui->actionButton->setText("Load");
-    connect(ui->actionButton, SIGNAL(clicked()), this, SLOT(loadProject()));
+    connect(ui->actionButton, &QPushButton::clicked, [this](){
+        this->load();
+    });
 }
 
-DeleteProjectSelectionDialog::DeleteProjectSelectionDialog(QString app_dir, QString current_project, QStringList projects, QWidget *parent) :
-    ProjectSelectionDialog(app_dir, current_project, projects, parent)
+void ProjectSelectionDialog::setupRemove()
 {
     ui->actionButton->setText("Delete");
-    connect(ui->actionButton, SIGNAL(clicked()), this, SLOT(deleteProject()));
+    connect(ui->actionButton, &QPushButton::clicked, [this](){
+        this->remove();
+    });
 }
 
 
 
-void LoadProjectSelectionDialog::loadProject(){
-    selected_project = getProject();
-    if(!selected_project.isEmpty()){
+void ProjectSelectionDialog::load(){
+    QString selectedProject = getSelectedProject();
+    QString openProject = static_cast<MainWindow*>(this->parentWidget())->getCurrentProject();
+    if(!selectedProject.isEmpty() && selectedProject != openProject){
+        static_cast<MainWindow*>(this->parentWidget())->setCurrentProject(selectedProject);
+        setResult(QDialog::Accepted);
         close();
-        this->setResult(QDialog::Accepted);
+    }else if(selectedProject == openProject){
+        QMessageBox::warning(this,
+                             QObject::tr("Project already loaded"),
+                             QObject::tr("Project already loaded.\nClick Ok to exit."),
+                             QMessageBox::Ok,
+                             QMessageBox::Ok);
     }
 }
-QString LoadProjectSelectionDialog::getProject(){
-    auto selection = ui->projectList->selectionModel()->selectedIndexes();
-    if(selection.size() == 0) return "";
-    return selection[0].data(Qt::DisplayRole).toString();
+
+const QString ProjectSelectionDialog::getSelectedProject(){
+    auto selectedIdxs = ui->projectList->selectionModel()->selectedIndexes();
+    if (!selectedIdxs.isEmpty()) {
+        const QVariant var = ui->projectList->model()->data(selectedIdxs.first());
+        const QString selectedItemString = var.toString();
+        return selectedItemString;
+    }
+    return "";
 }
 
 
-void DeleteProjectSelectionDialog::deleteProject(){
-    auto selection = ui->projectList->selectionModel()->selectedIndexes();
-    if(selection.size() == 0) return;
-    QString project = selection[0].data(Qt::DisplayRole).toString();
-    if(project == current_project) {
-        QMessageBox::critical(this, "Delete project", "Current project can't be deleted", QMessageBox::StandardButton::Ok, QMessageBox::Ok);
+void ProjectSelectionDialog::remove(){
+    DatabaseConnector dbc;
+    QString selectedProject = getSelectedProject();
+    QString openProject = static_cast<MainWindow*>(this->parentWidget())->getCurrentProject();
+    if(selectedProject.isEmpty() || selectedProject == openProject) {
+        QMessageBox::critical(this,
+                              "Cannot delete project.",
+                              "Current project can't be deleted or no project selected.\nClick in Ok",
+                              QMessageBox::StandardButton::Ok, QMessageBox::Ok);
         return;
-    }else if(project.isEmpty()){
+    }else if(selectedProject.isEmpty()){
         return;
     }
-    DbConnection dbc(app_dir);
-    if(!dbc.createConnection()) return;
-    QString dropStat = "drop table %1";
-    dropStat = dropStat.arg(project);
-    dbc.execQuery(dropStat);
-    QString dropStat2 = "drop table Ex%1";
-    dropStat2 = dropStat2.arg(project);
-    dbc.execQuery(dropStat2);
-    QString deleteStat = "delete from projects where name = \"%1\"";
-    deleteStat = deleteStat.arg(project);
-    dbc.execQuery(deleteStat);
-    ui->projectList->model()->removeRow(selection[0].row(),QModelIndex());
+    bool success = dbc.deleteProject(selectedProject);
+    if(!success) {
+        QMessageBox::critical(this,
+                              QObject::tr("Could delete project"),
+                              QObject::tr("Could not delete project\n.Click Ok to exit."),
+                              QMessageBox::Ok);
+        return;
+    }
+    setResult(QDialog::Accepted);
     close();
-}
-
-DeleteProjectSelectionDialog::~DeleteProjectSelectionDialog()
-{
-}
-
-LoadProjectSelectionDialog::~LoadProjectSelectionDialog()
-{
 }
 
 ProjectSelectionDialog::~ProjectSelectionDialog()
 {
     delete ui;
-}
-void ProjectSelectionDialog::onCloseProjectSelection()
-{
-    close();
-    this->setResult(QDialog::Rejected);
 }

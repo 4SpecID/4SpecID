@@ -1,52 +1,36 @@
-#ifndef PROJECTSELECTIONDIALOG_H
-#define PROJECTSELECTIONDIALOG_H
+#ifndef PROJECTSELECTION_H
+#define PROJECTSELECTION_H
 
 #include <QDialog>
+#include "databaseconnector.h"
+#include "mainwindow.h"
 
 namespace Ui {
 class ProjectSelectionDialog;
 }
 
+
 class ProjectSelectionDialog : public QDialog
 {
     Q_OBJECT
 
-    public:
-    explicit ProjectSelectionDialog(QString app_dir,QString current_project, QStringList projects, QWidget *parent = nullptr);
+public:
+enum class Action{
+    LOAD,
+    DELETE
+};
+    explicit ProjectSelectionDialog(MainWindow *parent = nullptr, Action action = Action::LOAD);
     ~ProjectSelectionDialog();
+private:
+    const QString getSelectedProject();
+    void load();
+    void remove();
+    void setupLoad();
+    void setupRemove();
+    void loadProjects();
+
     Ui::ProjectSelectionDialog *ui;
-    QString app_dir;
-    QString current_project;
-public slots:
-    void onCloseProjectSelection();
-};
-
-
-class LoadProjectSelectionDialog : public ProjectSelectionDialog
-{
-    Q_OBJECT
-
-public:
-    explicit LoadProjectSelectionDialog(QString app_dir,QString current_project, QStringList projects, QWidget *parent = nullptr);
-    QString getProject();
-    ~LoadProjectSelectionDialog();
-    QString selected_project ="";
-public slots:
-    void loadProject();
-};
-
-
-class DeleteProjectSelectionDialog : public ProjectSelectionDialog
-{
-    Q_OBJECT
-
-public:
-    explicit DeleteProjectSelectionDialog(QString app_dir,QString current_project, QStringList projects, QWidget *parent = nullptr);
-    ~DeleteProjectSelectionDialog();
-public slots:
-    void deleteProject();
 
 };
 
-
-#endif // PROJECTSELECTIONDIALOG_H
+#endif // PROJECTSELECTION_H
