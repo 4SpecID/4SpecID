@@ -26,8 +26,7 @@ ProjectSelectionDialog::ProjectSelectionDialog(MainWindow *parent, Action action
 }
 
 void ProjectSelectionDialog::loadProjects(){
-    DatabaseConnector dbc;
-    QStringList projects = dbc.getProjects();
+    QStringList projects = m_dbc.getProjects();
     QStringListModel *model = new QStringListModel(projects);
     ui->projectList->setModel(model);
 }
@@ -78,7 +77,6 @@ const QString ProjectSelectionDialog::getSelectedProject(){
 
 
 void ProjectSelectionDialog::remove(){
-    DatabaseConnector dbc;
     QString selectedProject = getSelectedProject();
     QString openProject = static_cast<MainWindow*>(this->parentWidget())->getCurrentProject();
     if(selectedProject.isEmpty() || selectedProject == openProject) {
@@ -90,7 +88,7 @@ void ProjectSelectionDialog::remove(){
     }else if(selectedProject.isEmpty()){
         return;
     }
-    bool success = dbc.deleteProject(selectedProject);
+    bool success = m_dbc.deleteProject(selectedProject);
     if(!success) {
         QMessageBox::critical(this,
                               QObject::tr("Could delete project"),

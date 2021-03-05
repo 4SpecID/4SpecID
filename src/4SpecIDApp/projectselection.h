@@ -29,6 +29,7 @@ private:
     void setupRemove();
     void loadProjects();
 
+    DatabaseConnector m_dbc;
     Ui::ProjectSelectionDialog *ui;
 
 };
