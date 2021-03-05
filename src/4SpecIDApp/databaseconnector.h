@@ -1,5 +1,5 @@
-#ifndef DBCONNECTION_H
-#define DBCONNECTION_H
+#ifndef DATABASECONNECTOR_H
+#define DATABASECONNECTOR_H
 /****************************************************************************
 **
 ** Copyright (C) 2016 The Qt Company Ltd.
@@ -70,27 +70,20 @@
     connect to a database.
 */
 //! [0]
-class DbConnection: public QObject{
-    Q_OBJECT
+class DatabaseConnector{
 public:
-    DbConnection();
-    DbConnection(QString base_path);
-    ~DbConnection();
-    bool createConnection();
-    bool success() {return _success;}
-    QString error() {return lastError;}
-    QString query() {return lastQuery;}
-    QVector<QStringList> execQuery(QString statement);
+    DatabaseConnector();
+    QStringList getProjects();
+    bool createProject(const QString&);
+    bool deleteProject(const QString&);
     void setup();
-
+    ~DatabaseConnector();
 private:
-    QString lastError, lastQuery;
-    bool _success;
-    QSqlDatabase db;
+    QSqlDatabase m_db;
 };
 
 //! [0]
 
 #endif
 
-#endif // DBCONNECTION_H
+#endif // DATABASECONNECTOR_H
