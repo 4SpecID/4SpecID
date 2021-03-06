@@ -8,7 +8,7 @@
 #include <QFutureWatcher>
 
 #include "databaseconnector.h"
-
+#include "datatypes.h"
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
@@ -21,13 +21,16 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
-    const QString& getCurrentProject(){ return m_projectName; }
-    void setCurrentProject(QString& project){ m_projectName = project; }
+    QString getCurrentProject(){ return QString::fromStdString(m_project.name); }
+    void setGradingParameters(const ispecid::datatypes::GradingParameters& params){ m_project.parameters = params; }
+    void setCurrentProject(const QString& project){ m_project.name = project.toStdString(); }
 
 private:
    void onNewProject();
    Ui::MainWindow* ui;
-   QString m_projectName;
+   DatabaseConnector m_dbc;
+   ispecid::datatypes::Project m_project;
+
 };
 
 #include <QUndoCommand>
