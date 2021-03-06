@@ -3,74 +3,79 @@
 #include <QMessageBox>
 #include <qdebug.h>
 
-GradingOptionsDialog::GradingOptionsDialog(ispecid::datatypes::grading_parameters params , QWidget *parent) :
+GradingOptionsDialog::GradingOptionsDialog(ispecid::datatypes::Project& project , MainWindow *parent) :
     QDialog(parent),
-    ui(new Ui::GradingOptionsDialog)
+    ui(new Ui::GradingOptionsDialog),
+    m_parameters(project.parameters)
 {
     ui->setupUi(this);
-    connect(ui->save_options_button, SIGNAL(clicked()),
-            this, SLOT(onSaveOptionsButtonClicked()));
-    connect(ui->ok_button, SIGNAL(clicked()),
-            this, SLOT(onOkButtonClicked()));
-    ui->min_lab_text->setText(QString::number(params.min_sources));
-    ui->min_sequences_text->setText(QString::number(params.min_size));
-    ui->max_dist_text->setText(QString::number(params.max_distance));
+    connect(this, &GradingOptionsDialog::updateGradingParameters,[parent](const ispecid::datatypes::GradingParameters& parameters){
+        parent->setGradingParameters(parameters);
+    });
+    connect(ui->saveButton, &QPushButton::clicked, [this](){
+        bool ok = checkValues();
+        if(ok){
+            qDebug() << "aqui";
+            emit updateGradingParameters(m_parameters);
+        }
+    });
+    connect(ui->okButton, &QPushButton::clicked, [this](){
+        bool ok = checkValues();
+        if(ok){
+            emit updateGradingParameters(m_parameters);
+            this->close();
+        }
+    });
+    ui->sourcesText->setText(QString::number(m_parameters.minSources));
+    ui->recordsText->setText(QString::number(m_parameters.minRecords));
+    ui->distanceText->setText(QString::number(m_parameters.maxDistance));
 }
 
 
-void showErrorMessage(QString error_name, QString error){
-    QMessageBox::critical(nullptr, error_name, error, QMessageBox::Cancel);
+void GradingOptionsDialog::showErrorMessage(QString error_name, QString error){
+    QMessageBox::critical(this, error_name, error, QMessageBox::Cancel);
 }
 
-bool GradingOptionsDialog::handleClick(){
-    double dist = 2;
-    int labs = 2;
-    int seqs = 3;
-    bool ok;
-    if(!ui->max_dist_text->text().isEmpty())
+bool GradingOptionsDialog::checkValues(){
+    double distance = m_parameters.maxDistance;
+    int sources = m_parameters.minSources;
+    int records = m_parameters.minRecords;
+    bool ok = true;
+    if(!ui->distanceText->text().isEmpty())
     {
-        dist = ui->max_dist_text->text().toDouble(&ok);
-        if(!ok ||(dist > 100 || dist < 0) ){
-            showErrorMessage("Maximun distance error","Value should be between 0 and 100");
-            dist = 2;
+        distance = ui->distanceText->text().toDouble(&ok);
+        if(!ok ||(distance > 100 || distance < 0) ){
+            showErrorMessage("Maximun distance error","Maximun distance error: Value should be between 0 and 100");
+            return ok;
         }
     }
-    if(!ui->min_lab_text->text().isEmpty())
+    if(!ui->sourcesText->text().isEmpty())
     {
-        labs= ui->min_lab_text->text().toInt(&ok);
-        if(!ok || labs < 1){
-            showErrorMessage("Minimum of laboratories deposited sequences error","Value should be a positive integer value");
-            labs = 2;
-        }if(ok && labs == 1){
-            QMessageBox::warning(nullptr,"Minimum of laboratories deposited sequences error","Warning: not advisable except to validate local repositories.",QMessageBox::Ok,QMessageBox::Ok);
+        sources= ui->sourcesText->text().toInt(&ok);
+        if(!ok || sources < 1){
+            showErrorMessage("Minimum of laboratories deposited sequences error","Minimum of laboratories deposited sequences error: Value should be a positive integer value");
+            return ok;
+        }if(ok && sources == 1){
+            QMessageBox::warning(this,"Minimum of laboratories deposited sequences error","Minimum of laboratories deposited sequences error: not advisable except to validate local repositories.",QMessageBox::Ok,QMessageBox::Ok);
         }
     }
-    if(!ui->min_sequences_text->text().isEmpty())
+    if(!ui->recordsText->text().isEmpty())
     {
-        seqs= ui->min_sequences_text->text().toInt(&ok);
-        if(!ok || seqs < 3){
-            showErrorMessage("Sequences deposited or published independently error", "Value should be an integer value greater or equal 3");
-            seqs = 3;
+        records= ui->recordsText->text().toInt(&ok);
+
+        if(!ok || records < 3){
+            showErrorMessage("Sequences deposited or published independently error", "Sequences deposited or published independently error: Value should be an integer value greater or equal 3");
+            return ok;
         }
     }
-    emit saveConfig(dist,labs,seqs);
-    return true;
+    m_parameters.maxDistance = distance;
+    m_parameters.minSources = sources;
+    m_parameters.minRecords = records;
+    return ok;
 }
 
 
 GradingOptionsDialog::~GradingOptionsDialog()
 {
     delete ui;
-}
-
-void GradingOptionsDialog::onSaveOptionsButtonClicked()
-{
-    handleClick();
-}
-
-void GradingOptionsDialog::onOkButtonClicked()
-{
-    auto ok = handleClick();
-    if(ok)
-        this->close();
 }

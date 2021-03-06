@@ -20,10 +20,10 @@ background:qlineargradient(spread:pad, x1:0, y1:0.511364, x2:1, y2:0.511364, sto
   </property>
   <layout class="QGridLayout" name="gridLayout">
    <item row="1" column="1" colspan="2">
-    <widget class="QLineEdit" name="min_lab_text"/>
+    <widget class="QLineEdit" name="sourcesText"/>
    </item>
    <item row="0" column="1" colspan="2">
-    <widget class="QLineEdit" name="max_dist_text">
+    <widget class="QLineEdit" name="distanceText">
      <property name="sizePolicy">
       <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
        <horstretch>0</horstretch>
@@ -33,7 +33,7 @@ background:qlineargradient(spread:pad, x1:0, y1:0.511364, x2:1, y2:0.511364, sto
     </widget>
    </item>
    <item row="2" column="0">
-    <widget class="QLabel" name="min_lab_label">
+    <widget class="QLabel" name="recordsLabel">
      <property name="sizePolicy">
       <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
        <horstretch>0</horstretch>
@@ -52,7 +52,7 @@ background:qlineargradient(spread:pad, x1:0, y1:0.511364, x2:1, y2:0.511364, sto
     </widget>
    </item>
    <item row="1" column="0">
-    <widget class="QLabel" name="min_sequences_label">
+    <widget class="QLabel" name="sourcesLabel">
      <property name="sizePolicy">
       <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
        <horstretch>0</horstretch>
@@ -88,7 +88,7 @@ background:qlineargradient(spread:pad, x1:0, y1:0.511364, x2:1, y2:0.511364, sto
     </widget>
    </item>
    <item row="0" column="0">
-    <widget class="QLabel" name="max_dist_label">
+    <widget class="QLabel" name="distanceLabel">
      <property name="sizePolicy">
       <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
        <horstretch>0</horstretch>
@@ -108,7 +108,7 @@ background:qlineargradient(spread:pad, x1:0, y1:0.511364, x2:1, y2:0.511364, sto
     </widget>
    </item>
    <item row="2" column="1" colspan="2">
-    <widget class="QLineEdit" name="min_sequences_text"/>
+    <widget class="QLineEdit" name="recordsText"/>
    </item>
    <item row="3" column="1" colspan="2">
     <layout class="QHBoxLayout" name="horizontalLayout">
@@ -116,7 +116,7 @@ background:qlineargradient(spread:pad, x1:0, y1:0.511364, x2:1, y2:0.511364, sto
       <number>10</number>
      </property>
      <item>
-      <widget class="QPushButton" name="save_options_button">
+      <widget class="QPushButton" name="saveButton">
        <property name="sizePolicy">
         <sizepolicy hsizetype="Minimum" vsizetype="Maximum">
          <horstretch>0</horstretch>
@@ -162,7 +162,7 @@ height: 25px
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="ok_button">
+      <widget class="QPushButton" name="okButton">
        <property name="sizePolicy">
         <sizepolicy hsizetype="Minimum" vsizetype="Maximum">
          <horstretch>0</horstretch>
@@ -212,11 +212,11 @@ height: 25px
   </layout>
  </widget>
  <tabstops>
-  <tabstop>max_dist_text</tabstop>
-  <tabstop>min_lab_text</tabstop>
-  <tabstop>min_sequences_text</tabstop>
-  <tabstop>save_options_button</tabstop>
-  <tabstop>ok_button</tabstop>
+  <tabstop>distanceText</tabstop>
+  <tabstop>sourcesText</tabstop>
+  <tabstop>recordsText</tabstop>
+  <tabstop>saveButton</tabstop>
+  <tabstop>okButton</tabstop>
  </tabstops>
  <resources/>
  <connections/>
