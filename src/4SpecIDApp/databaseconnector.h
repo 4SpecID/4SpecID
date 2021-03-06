@@ -60,6 +60,7 @@
 #include <QSqlRecord>
 #include <QDir>
 #include <qdebug.h>
+#include "datatypes.h"
 
 /*
     This file defines a helper function to open a connection to an
@@ -73,12 +74,23 @@
 class DatabaseConnector{
 public:
     DatabaseConnector();
-    QStringList getProjects();
-    bool createProject(const QString&);
+    bool getProjects(QStringList&);
+    bool updateProjectParameters(const ispecid::datatypes::Project&);
     bool deleteProject(const QString&);
-    void setup();
+    bool createProject(const ispecid::datatypes::Project&,
+                              std::vector<std::string>&,
+                              std::vector<std::vector<std::string>>&,
+                              bool, bool, int batch = 1);
+    bool loadProject(ispecid::datatypes::Project&);
+    bool setup();
     ~DatabaseConnector();
 private:
+    bool createProjectEntry(const ispecid::datatypes::Project&);
+    bool insertProjectRecords(const ispecid::datatypes::Project&,
+                              const QString&,
+                              std::vector<std::vector<std::string>>&,
+                              bool, bool, int batch = 1);
+    bool createRecordsTable(const ispecid::datatypes::Project&, const QString&);
     QSqlDatabase m_db;
 };
 
