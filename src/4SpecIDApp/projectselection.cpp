@@ -8,7 +8,8 @@
 
 ProjectSelectionDialog::ProjectSelectionDialog(MainWindow *parent, Action action) :
     QDialog(parent),
-    ui(new Ui::ProjectSelectionDialog)
+    ui(new Ui::ProjectSelectionDialog),
+    m_parentProject("")
 {
     ui->setupUi(this);
     if(action == Action::LOAD){
@@ -23,10 +24,24 @@ ProjectSelectionDialog::ProjectSelectionDialog(MainWindow *parent, Action action
         setResult(QDialog::Rejected);
         close();
     });
+
+    connect(this, &ProjectSelectionDialog::getProject, [parent, &project = this->m_parentProject](){
+        project = parent->getCurrentProject();
+    });
+    connect(this, &ProjectSelectionDialog::setProject, [parent](const QString& project){
+        parent->setCurrentProject(project);
+    });
 }
 
 void ProjectSelectionDialog::loadProjects(){
-    QStringList projects = m_dbc.getProjects();
+    QStringList projects;
+    bool success = m_dbc.getProjects(projects);
+    if(!success){
+        QMessageBox::critical(this,
+                          QObject::tr("Could not load projects"),
+                          QObject::tr("Could not load projects.\nClick Ok to exit."),
+                          QMessageBox::Ok);
+    }
     QStringListModel *model = new QStringListModel(projects);
     ui->projectList->setModel(model);
 }
@@ -51,12 +66,12 @@ void ProjectSelectionDialog::setupRemove()
 
 void ProjectSelectionDialog::load(){
     QString selectedProject = getSelectedProject();
-    QString openProject = static_cast<MainWindow*>(this->parentWidget())->getCurrentProject();
-    if(!selectedProject.isEmpty() && selectedProject != openProject){
-        static_cast<MainWindow*>(this->parentWidget())->setCurrentProject(selectedProject);
+    emit getProject();
+    if(!selectedProject.isEmpty() && selectedProject != m_parentProject){
+        emit setProject(selectedProject);
         setResult(QDialog::Accepted);
         close();
-    }else if(selectedProject == openProject){
+    }else if(!selectedProject.isEmpty() && selectedProject == m_parentProject){
         QMessageBox::warning(this,
                              QObject::tr("Project already loaded"),
                              QObject::tr("Project already loaded.\nClick Ok to exit."),
@@ -78,8 +93,8 @@ const QString ProjectSelectionDialog::getSelectedProject(){
 
 void ProjectSelectionDialog::remove(){
     QString selectedProject = getSelectedProject();
-    QString openProject = static_cast<MainWindow*>(this->parentWidget())->getCurrentProject();
-    if(selectedProject.isEmpty() || selectedProject == openProject) {
+    emit getProject();
+    if(selectedProject.isEmpty() || selectedProject == m_parentProject) {
         QMessageBox::critical(this,
                               "Cannot delete project.",
                               "Current project can't be deleted or no project selected.\nClick in Ok",

@@ -21,6 +21,9 @@ enum class Action{
 };
     explicit ProjectSelectionDialog(MainWindow *parent = nullptr, Action action = Action::LOAD);
     ~ProjectSelectionDialog();
+signals:
+    void getProject();
+    void setProject(const QString&);
 private:
     const QString getSelectedProject();
     void load();
@@ -31,6 +34,7 @@ private:
 
     DatabaseConnector m_dbc;
     Ui::ProjectSelectionDialog *ui;
+    QString m_parentProject;
 
 };
 
